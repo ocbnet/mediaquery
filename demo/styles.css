@@ -1,0 +1,9 @@
+@media screen { #media-query-scope { z-index: 90; } }
+@media screen and (max-width: 980px) { #media-query-scope { z-index: 70; } }
+@media screen and (max-width: 680px) { #media-query-scope { z-index: 40; } }
+@media screen and (max-width: 480px) { #media-query-scope { z-index: 20; } }
+
+BODY {
+	font-family: verdana;
+	font-size: 14px;
+}
