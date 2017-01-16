@@ -1,5 +1,8 @@
 /*
 
+	Released under the MIT license (see LICENSE file)
+	© 2017 Marcel Greter (https://github.com/mgreter)
+
 	Media Query Scope is a library to detect the currently active media queries
 
 	// css example definition

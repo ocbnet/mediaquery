@@ -30,6 +30,9 @@
 	<!-- main merge operations -->
 	<js id="layout" step="layout" >
 
+		<!-- add license head to minified file -->
+		<prefix path="conf/license.head.txt" />
+
 		<!-- include layout library files -->
 		<input path="mediaquery.src.js" />
 

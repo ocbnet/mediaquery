@@ -8,6 +8,11 @@ to breakpoint change events. There are certainly other modules around that do th
 releasing this library as I have used it in various projects without any issues and wanted to
 give it a home here on GitHub for me and others to use if they like to!
 
+## Downloads
+
+- Sources: https://raw.githubusercontent.com/ocbnet/mediaquery/master/mediaquery.src.js
+- Minified: https://raw.githubusercontent.com/ocbnet/mediaquery/master/mediaquery.min.js
+
 ## Dependencies
 
 This library has [`jQuery`][1] as a dependency (since I'm lazy)! Pretty much any version should work.
@@ -234,3 +239,9 @@ Check out the demo sources to get you started:
  - https://github.com/ocbnet/mediaquery/blob/master/demo/init.js
  - https://github.com/ocbnet/mediaquery/blob/master/demo/styles.css
  - https://github.com/ocbnet/mediaquery/blob/master/demo/index.html
+ 
+## Copyright
+
+© 2017 [Marcel Greter] [2]
+
+[2]: https://github.com/mgreter
