@@ -82,8 +82,8 @@ we assign a name to every breakpoint number. Normally you do this in a DOM ready
 event emitter object before you try to register listeners!
 
 ```js
-// instantiate the media query object
-// you probably want to export globally
+// instantiate a new media query object
+// you probably want to export it globally
 window.mediaquery =
 // configuration must match CSS styles
 new OCBNET.MediaQuery ({
@@ -226,6 +226,32 @@ jQuery('UL.nav>LI.lvl-0 A').click(function(evt) {
 })
 ```
 
+### Reset element styles
+
+Sometimes you need to reset certain styles between different views, like with a complex
+mobile menu. Consider the need to explicitly update the height for the wrapper container
+in mobile view. When the view switches to the desktop view, you probably no longer want
+the explicit height value on that element. Therefore you want to reset it when the view
+switches. The example below shows another way to detect such border passages. It should
+hopefully be clear how you can adapt this technique for more complex situations.
+
+```js
+var tablet = mq.getLevel('tablet');
+mq.onChange(function (to, from)
+{
+    // executed when going above border
+    if (from <= tablet && to > tablet) {
+        // show node again and reset explicit height
+        $node.css({ 'display': '', 'height': '' })
+    }
+    // executed when going below or equal
+    else if (to <= tablet && from > tablet) {
+        // hide node in small views
+        $node.css('display', 'none');
+    }
+});
+```
+
 ## Demo
 
 Resize the browser window to trigger breakpoint events!
@@ -242,6 +268,6 @@ Check out the demo sources to get you started:
  
 ## Copyright
 
-© 2017 [Marcel Greter] [2]
+© 2017 [Marcel Greter][2]
 
 [2]: https://github.com/mgreter

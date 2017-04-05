@@ -293,9 +293,9 @@
 			var handlers = this.onChangeHandlers;
 			// loop and call all attached event handlers
 			for(var i = 0; i < handlers.length; i++)
-			{
-				handlers[i].call(this, cur, prv);
-			}
+			{ handlers[i].call(this, cur, prv); }
+			// reset pending flag
+			this.pending = false;
 		}
 		// EO fn resized
 
@@ -313,6 +313,8 @@
 			this.onChangeHandlers.push(cb)
 			// sort the array by cb priority
 			this.onChangeHandlers.sort(priosort)
+			// get the default level to compare
+			var defaultLevel  = this.getLevel('default');
 
 			// attach resize listener only once
 			if (!this.boundResize)
@@ -320,7 +322,7 @@
 				// event handler is registered
 				this.boundResize = true;
 				// get before next resize event
-				this.currentLevel = this.getLevel('default');
+				this.currentLevel = defaultLevel;
 				// force callback to the correct context
 				var resized = jQuery.proxy(_resized, this);
 				// attach resize event handler to the window
@@ -328,14 +330,18 @@
 				// check if context already has changed
 				// if so we will trigger all callback once
 				if (this.getCurrentLevel() != this.currentLevel)
-				{
-					// setup a timer for next idle loop
-					// wait till all handlers are collected
-					window.setTimeout(resized, 0);
-				}
+				{ this.pending = setTimeout(resized, 0); }
 				// EO if level changed
 			}
 			// EO if not boundResize
+			// Has no pending resize?
+			else if (!this.pending) {
+				// execute late registered
+				var prv = defaultLevel,
+				    cur = this.getCurrentLevel();
+				// but only when not at default level
+				if (cur != prv) cb.call(this, cur, prv);
+			}
 
 		};
 		// @@@ EO onChange @@@
